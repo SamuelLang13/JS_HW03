@@ -1,9 +1,8 @@
 /**
  * Enum for the gender
  */
-const Gender = {
-    male: 'male',
-    female: 'female'
+const gender = {
+    gender: ["male", "female"]
 }
 
 /**
@@ -47,7 +46,8 @@ function generate(input){
     var dtoOut=[]
     for (let i = 0; i < input.count; i++) {
         var workloadIndex = Math.floor(Math.random()*(3 - 0 + 1)+0)
-        person = new Person(1,1,1,1,workload.hours[workloadIndex])
+        var genderIndex = Math.floor(Math.random()*(1 - 0 + 1)+0)
+        person = new Person(gender.gender[genderIndex],1,1,1,workload.hours[workloadIndex])
         dtoOut.push(person)
     }
     console.log(dtoOut)
