@@ -7,6 +7,13 @@ const gender = {
 }
 
 /**
+ * Object for the workload
+ */
+const workload = {
+    hours : [10,20,30,40]
+}
+
+/**
  * Input object
  */
 const dtoIn = {
@@ -22,12 +29,14 @@ const dtoIn = {
  * Output object
  */
 const dtoOut = {
-    
-
+    gender,
+    birthdate,
+    firstName,
+    surname,
+    workload
 }
 
 function main() {
     dtoOut = new dtoOut()
-
 
 }
