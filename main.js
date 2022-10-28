@@ -1,7 +1,7 @@
 /**
  * Enum for the gender
  */
-const gender = {
+const Gender = {
     male: 'male',
     female: 'female'
 }
@@ -25,18 +25,39 @@ const dtoIn = {
 
 }
 
+class Person  {
+    birthdate
+    name
+    surname
+    workload
+    constructor(gender,birthdate,name,surname,workload){
+        this.gender = gender
+        this.birthdate = birthdate
+        this.name = name
+        this.surname = surname
+        this.workload = workload
+    }
+}
+
 /**
  * Output object
  */
-const dtoOut = {
-    gender,
-    birthdate,
-    firstName,
-    surname,
-    workload
+// const dtoOut = {}
+function generate(input){
+    var dtoOut=[]
+    for (let i = 0; i < input.count; i++) {
+        var workloadIndex = Math.floor(Math.random()*(3 - 0 + 1)+0)
+        person = new Person(1,1,1,1,workload.hours[workloadIndex])
+        dtoOut.push(person)
+    }
+    console.log(dtoOut)
 }
 
 function main() {
-    dtoOut = new dtoOut()
+    generate(dtoIn)
 
 }
+
+if (require.main === module) {
+    main();
+  }
