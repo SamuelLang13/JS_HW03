@@ -1,14 +1,14 @@
 /**
  * Enum for the gender
  */
-const gender = {
+const Gender = {
     gender: ["male", "female"]
 }
 
 /**
  * Object for the workload
  */
-const workload = {
+const Workload = {
     hours : [10,20,30,40]
 }
 
@@ -38,16 +38,26 @@ class Person  {
     }
 }
 
+function generateDate(start,end){
+    const curYear = new Date().getFullYear()
+    const startDate = curYear-end
+    const endDate = curYear-start
+    var date = (Math.floor(Math.random() * (endDate - startDate)+startDate));
+    var hour = 0 + Math.random() * (23 - 0) | 0;
+    var isoDate = new Date(date,hour)
+    return isoDate
+}
+
 /**
  * Output object
  */
-// const dtoOut = {}
 function generate(input){
     var dtoOut=[]
     for (let i = 0; i < input.count; i++) {
         var workloadIndex = Math.floor(Math.random()*(3 - 0 + 1)+0)
         var genderIndex = Math.floor(Math.random()*(1 - 0 + 1)+0)
-        person = new Person(gender.gender[genderIndex],1,1,1,workload.hours[workloadIndex])
+        var birthDate = generateDate(input.age.min, input.age.max)
+        person = new Person(Gender.gender[genderIndex],birthDate,1,1,Workload.hours[workloadIndex])
         dtoOut.push(person)
     }
     console.log(dtoOut)
