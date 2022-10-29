@@ -1,3 +1,4 @@
+
 /**
  * Enum for the gender
  */
@@ -38,10 +39,17 @@ class Person  {
     }
 }
 
+const fs = require("fs");
+function getRandomLine(filename){
+    var data = fs.readFileSync(filename, "utf8");
+    var lines = data.split('\n');
+    return lines[Math.floor(Math.random()*lines.length)];
+ }
+
 function generateDate(start,end){
     const curYear = new Date().getFullYear()
-    const startDate = curYear-end
-    const endDate = curYear-start
+    const startDate = curYear-(end)
+    const endDate = curYear-(start)
     var date = (Math.floor(Math.random() * (endDate - startDate)+startDate));
     var hour = 0 + Math.random() * (23 - 0) | 0;
     var isoDate = new Date(date,hour)
@@ -57,7 +65,14 @@ function generate(input){
         var workloadIndex = Math.floor(Math.random()*(3 - 0 + 1)+0)
         var genderIndex = Math.floor(Math.random()*(1 - 0 + 1)+0)
         var birthDate = generateDate(input.age.min, input.age.max)
-        person = new Person(Gender.gender[genderIndex],birthDate,1,1,Workload.hours[workloadIndex])
+        var firstName=""
+        if(genderIndex==1){
+            firstName=getRandomLine("female.txt")
+        }else{
+            firstName=getRandomLine("male.txt")
+        }
+        var surname = getRandomLine("surname.txt")
+        person = new Person(Gender.gender[genderIndex],birthDate,firstName,surname,Workload.hours[workloadIndex])
         dtoOut.push(person)
     }
     console.log(dtoOut)
@@ -70,4 +85,4 @@ function main() {
 
 if (require.main === module) {
     main();
-  }
+}
